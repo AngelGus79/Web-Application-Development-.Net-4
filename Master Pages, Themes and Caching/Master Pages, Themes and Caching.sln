@@ -5,6 +5,11 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Master Pages, Themes and Caching", "Master Pages, Themes and Caching\Master Pages, Themes and Caching.csproj", "{5CF55AD5-CA74-4657-A817-6E253FF0858F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{83F7C456-D939-4C9D-BB16-D6E4B2F4C12B}"
+	ProjectSection(SolutionItems) = preProject
+		Introduction.txt = Introduction.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

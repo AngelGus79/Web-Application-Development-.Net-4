@@ -1,0 +1,30 @@
+
+Configuration File Hierarchy
+
+In the root %SystemRoot%\Microsoft.NET\Framework\<versionNumber>\CONFIG\ you can find the follow configuration files
+Machine.Config -It contains configuration for all .Net applications, like console, winforms, web applications etc.
+	Web.Config (global, all sites) -Dedicated to the web sites, located in the same folder that machin.config, It can override some configurations of the machine.config
+		Web.Config (Site) - You can modify settings of an specific web site by changing the web.config file located in the location of the project
+			web.Config (Application) -you can modify settings of an specific application inside a site
+				web.config (folder) - you can create folders an add a web.config file to set settings
+
+from the highest level to lowest, the configuration is overwritten.
+
+
+You can modify the settings by Web Site Administration Tool (WSAT) to access follow the following
+
+1.- right click in the web site project / <properties> option / web <tab>/ <project url>  and copy the port
+2.- open a command prompt and browse to C:\Program Files (x86)\IIS Express   (NOT AS ADMINISTRATOR).
+3.- execute iisexpress.exe /path:C:\Windows\Microsoft.NET\Framework\v4.0.30319\ASP.NETWebAdminFiles /vpath:/ASP.NETWebAdminFiles /port:THEPORT /clr:4.0 /ntlm
+4.- finally open a browser with the url http://localhost:PORT/asp.netwebadminfiles/default.aspx?applicationPhysicalPath=PATHTOYOURPROJECT&applicationUrl=/
+5.- to get the path of project just right-click ono the project and <open project folder> option
+
+you will fing 3 main tabs
+security .- dedicated to manage users and set permissions to the web site to users
+application .- this settings apply to entire application
+provider .- you can specify data base provider to create memberships and roles.
+
+The WSAT helps to create and modify website settings that are not inherited, but if a setting is
+inherited and cannot be overridden, the setting will be unavailable.
+
+Also you can modify asp.net configuration by The IIS Manager by using a GUI.
