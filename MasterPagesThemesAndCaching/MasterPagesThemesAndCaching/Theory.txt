@@ -1,0 +1,249 @@
+﻿You can set a masterpage for an site, application or folder in the Web.Confing  correspondent
+
+Example:
+<pages masterPageFile="MyApplication.Master" />
+
+1.Referencing  Master Page members from Content Pages
+
+The steps to reference master page properties from a content page is as follows:
+1.1 you must create a public property in the master page code-behind file.
+
+public String myProperty
+{
+	get { return (String)Session["myProperty"]; }
+	set { Session["myProperty"] = value; }
+}
+
+
+1.2 Add the @ MasterType declaration to the ASPX content page.
+    
+	<%@ Page Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="MyWebForm.aspx.cs" Inherits="MyWebForm" title="My Web Form" %>
+    after the header of the content page add a code like this
+	<%@ MasterType VirtualPath="~/Site.master" %>
+
+1.3 use the master page property from the content page by refering it as Master.<name of property>.
+	
+	Label1.Text = Master.myProperty;
+
+
+if you have many master pages, to refer one, try to derivate the master page in order to have just one master page base.
+
+Session variable store user's specific information about a user session or visit.
+Application variable store information that can be accessed by whoever user.
+
+
+2 Refering Master page control from a content page
+
+2.1 You can do it encapsulating the control like the example below is the best way
+
+or
+
+2.2 you can do it of this another way
+
+Label MyLabel = (Label)Master.FindControl("MyLabel");
+MyLabelBrand.Text = "Somethig";
+
+3 Nested Master Page
+3.1<%@ Master Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="NestedMasterPage.master.cs" Inherits="Master_Pages__Themes_and_Caching.NestedMasterPage" %>
+
+the difference are these directives together
+@ Master
+MasterPageFile="~/Site.master" 
+
+3.2 Nested master page can have many holdercontent inside the mapped holder conten of the master page parent
+
+<%@ Master Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="NestedMasterPage.master.cs" Inherits="Master_Pages__Themes_and_Caching.NestedMasterPage" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+you can write custom code to the nested page here or below the  ContentPlaceHolder
+
+	<asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server"/>
+
+</asp:Content>
+
+4.Change Master Pages Dinamically
+
+4.1 create a master page and after this create another master page and copy all properties, methods and placeholders from the first to the second one
+all the master pages MUST have the same contentplaceholders names
+
+4.2 switch between the master pages using a code like this
+	Session["masterpage"] = "~/MasterPage2.master";
+	Response.Redirect(Request.Url.ToString());
+
+4.3 Define the master page in the content page’s Page_PreInit method.
+Page_PreInit is the last chance to override the default master page setting
+
+void Page_PreInit(Object sender, EventArgs e)
+{
+if (Session["masterpage"] != null)
+MasterPageFile = (String)Session["masterpage"];
+}
+
+
+5.Caching
+
+You can store information in cache to improve performance and scalability in web sites.
+for example if you have a list of articles that you need to show, you can store many of them in cache
+It is good focus to store data in cache which does not chance frecuently.
+
+In ASP.Net there are 2 types of caching
+	5.1 Application caching
+		store objects in memory and automatically remove them based in memory limitations
+		System.Web.Caching.Cache
+
+		Cache["Something"] = "This is an information in the cache";
+		if (Cache["Something"] != null)
+			Label1.Text = (string)Cache["Something"];
+	
+		5.1.1 you can store data in a more sophisticate way, with insert method which has parameter some of them are
+
+		key		It must be unique.
+		value	The data (like a list or whatever).
+		priority to set witch object remove first and the last, it have some options
+				Low
+				BelowNormal
+				Normal (Default is equivalent to Normal)
+				AboveNormal
+				High
+				NotRemovable
+		dependencies identifies a file or a key to another item
+
+		5.1.2 Defining a Cache Dependency
+		the cache dependecy associate a cache item to other thing
+		Cache.Insert("FileCache", File.ReadAllText("MyFile.txt"),
+			new System.Web.Caching.CacheDependency(Server.MapPath("MyFile.txt")));
+
+
+		5.1.3 Aggregating many dependencies to a cache
+
+			System.Web.Caching.CacheDependency dep1 =
+			new System.Web.Caching.CacheDependency(Server.MapPath("SourceFile.txt"));
+			string[] keyDependencies2 = { "CacheItem1" };
+			System.Web.Caching.CacheDependency dep2 =
+			new System.Web.Caching.CacheDependency(null, keyDependencies2);
+			System.Web.Caching.AggregateCacheDependency aggDep =
+			new System.Web.Caching.AggregateCacheDependency();
+			aggDep.Add(dep1);
+			aggDep.Add(dep2);
+			Cache.Insert("FileCache", File.ReadAllText("SourceFile.txt"), aggDep);
+
+
+		 5.1.4  Setting an Absolute Cache Expiration
+		 Cache.Insert("FileCache", "CacheContents", null, DateTime.Now.AddMinutes(10),
+		Cache.NoSlidingExpiration);
+
+		 5.1.5 Setting a Sliding Cache Expiration
+		 Cache.Insert("CacheItem7", "Cached Item 7",
+		null, System.Web.Caching.Cache.NoAbsoluteExpiration, new TimeSpan(0, 10, 0));
+
+	5.2 Page output caching
+	Store rendered pages, or page parts in memory
+		5.2.1 you can define how and which page have to be cached
+
+		Duration. seconds to store a page in cache
+		Location. page location. OutputCacheLocation enumeration values, such as Any, Client, Downstream, Server, None, or ServerAndClient. The default is Any
+		CacheProfile. The name of the cache settings to associate with the page. The default is an empty string ("").
+		NoStore. True or false value that specify whether to prevent secondary storage of sensitive information.
+		Shared. A Boolean value that determines whether user control output can be shared with multiple pages. The default is false.
+		SqlDependency
+		VaryByControl
+		VaryByParam
+		VaryByCustom
+		VaryByHeader
+
+		example
+		this snippet code store the page by 30s
+		<%@ OutputCache Duration="30" VaryByParam="none" %>
+
+		The example below, caches a two copies of the page for different values provided in the search or category query string parameters.
+		<%@ OutputCache Duration="15" VaryByParam="search;category" %>
+
+		if values are changed you can invalidate cache
+
+		<select name="ctl00$MainContent$ChoiceDropDownList" id="MainContent_ChoiceDropDownList">
+		<option value="One"> 1</option>
+		<option value="Two">2</option>
+		<option value="Three">3</option>
+		</select>
+		<input name="ctl00$MainContent$UserNameTextBox" type="text" id="MainContent_
+		UserNameTextBox" />
+
+		you will need to do this to invalidate
+		<%@ OutputCache Duration="20" VaryByParam="ctl00$MainContent$ChoiceDropDownList;ctl00$MainContent$UserNameTextBox" %>
+
+	5.2.2 Caching a Partial Page 
+	    a)  move the partial page to a user control
+		b) add the @ OutputCache directive to the user control.
+        c) cache the user control separately
+
+		void Page_Load(object sender, System.EventArgs e)
+		{
+		// Specify the callback method.
+		Substitution1.MethodName = "GetCurrentDateTime";
+		}
+		// The Substitution control calls this method to retrieve the current date and 	time.
+		// This section of the page is exempt from output caching.
+		public static string GetCurrentDateTime (HttpContext context)
+		{
+		return DateTime.Now.ToString();
+		}
+
+
+   5.3 Programmatically Invalidating Cached Pages
+		you can cache pages until the page has changed
+
+		public static void ValidateCacheOutput(HttpContext context, Object data,
+		ref HttpValidationStatus status)
+		{
+		if (context.Request.QueryString["Status"] != null)
+		{
+		string pageStatus = context.Request.QueryString["Status"];
+		if (pageStatus == "invalid")
+		status = HttpValidationStatus.Invalid;
+		else if (pageStatus == "ignore")
+		status = HttpValidationStatus.IgnoreThisRequest;
+		else
+		status = HttpValidationStatus.Valid;
+		}
+		else
+		status = HttpValidationStatus.Valid;
+		}
+
+		HttpValidationStatus values control how page is cached
+		HttpValidationStatus.Invalid -  invalidate cache. Dinamically created.
+		HttpValidationStatus.IgnoreThisRequest - just the current page request is generated dinamically, the followings use cache
+		HttpValidationStatus.Valid -  return cached page
+
+		protected void Page_Load(object sender, EventArgs e)
+		{
+		Response.Cache.AddValidationCallback(
+		new HttpCacheValidateHandler(ValidateCacheOutput), null);
+		}
+
+	5.4 Creating a Cache Page Output Dependency
+		To create a cache page output dependency, you can use the following Response methods:
+		Response.AddCacheDependency This makes the validity of a cached response
+		dependent on a CacheDependency object.
+		Response.AddCacheItemDependency and Response.AddCacheItemDependencies
+		These make the validity of a cached response dependent on one or more other
+		items in the cache.
+		Response.AddFileDependency and Response.AddFileDependencies These make
+		the validity of a cached response dependent on one or more files.
+
+		you can create cache profile, to easily reference. In the web.confing <system.web> member
+
+		<caching>
+			<outputCacheSettings>
+				<outputCacheProfiles>
+					<add name="twoMinuteProfile" enabled="true" duration="120"/>
+				</outputCacheProfiles>
+			</outputCacheSettings>
+		</caching>
+
+
+		usage of profile
+
+		<%@ OutputCache CacheProfile="twoMinuteProfile" VaryByParam="none" %>

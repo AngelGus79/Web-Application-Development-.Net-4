@@ -1,0 +1,15 @@
+1. HRESULT: 0x80131047, when the name of your assembly has spaces or rare characters
+
+	Solution 1
+			1.1
+			Change the assembly name
+			right-click in project / <properties> option / <Application> Tab / <Assembly Name> Entry
+
+			1.2
+			Delete <bin> and <obj> folders
+
+
+
+		
+		
+
