@@ -7,12 +7,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5CF55AD5-CA74-4657-A817-6E253FF0858F}</ProjectGuid>
+    <ProjectGuid>{C244F10F-2A06-4848-9932-69D61FEEC0B1}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MasterPages</RootNamespace>
-    <AssemblyName>MasterPages</AssemblyName>
+    <RootNamespace>HandlingEventsAndManagingStates</RootNamespace>
+    <AssemblyName>HandlingEventsAndManagingStates</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -67,99 +67,55 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="UsingCacheInsert.aspx" />
-    <Content Include="NoCachingMultipleResponsesInContentPage.aspx" />
-    <Content Include="UsingCache.aspx" />
-    <Content Include="CachingOneResponse.aspx" />
-    <Content Include="AccedingToPropertiesOfMasterPage.aspx" />
+    <Content Include="CreatingControlsDinamically.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="UsingApplicationAndSessionApproach.aspx" />
     <Content Include="Theory.txt" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="CachingMultipleResponses.aspx" />
+    <Content Include="UsingCookies.aspx" />
+    <Content Include="UsingQueryStrings.aspx" />
+    <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UsingCacheInsert.aspx.cs">
-      <DependentUpon>UsingCacheInsert.aspx</DependentUpon>
+    <Compile Include="CreatingControlsDinamically.aspx.cs">
+      <DependentUpon>CreatingControlsDinamically.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UsingCacheInsert.aspx.designer.cs">
-      <DependentUpon>UsingCacheInsert.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="NoCachingMultipleResponsesInContentPage.aspx.cs">
-      <DependentUpon>NoCachingMultipleResponsesInContentPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="NoCachingMultipleResponsesInContentPage.aspx.designer.cs">
-      <DependentUpon>NoCachingMultipleResponsesInContentPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UsingCache.aspx.cs">
-      <DependentUpon>UsingCache.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UsingCache.aspx.designer.cs">
-      <DependentUpon>UsingCache.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CachingOneResponse.aspx.cs">
-      <DependentUpon>CachingOneResponse.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CachingOneResponse.aspx.designer.cs">
-      <DependentUpon>CachingOneResponse.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AccedingToPropertiesOfMasterPage.aspx.cs">
-      <DependentUpon>AccedingToPropertiesOfMasterPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AccedingToPropertiesOfMasterPage.aspx.designer.cs">
-      <DependentUpon>AccedingToPropertiesOfMasterPage.aspx</DependentUpon>
+    <Compile Include="CreatingControlsDinamically.aspx.designer.cs">
+      <DependentUpon>CreatingControlsDinamically.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Main.Master.cs">
-      <DependentUpon>Main.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Main.Master.designer.cs">
-      <DependentUpon>Main.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Main2.Master.cs">
-      <DependentUpon>Main2.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Main2.Master.designer.cs">
-      <DependentUpon>Main2.Master</DependentUpon>
-    </Compile>
-    <Compile Include="NestedMasterPage.master.cs">
-      <DependentUpon>NestedMasterPage.master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="NestedMasterPage.master.designer.cs">
-      <DependentUpon>NestedMasterPage.master</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CachingMultipleResponses.aspx.cs">
-      <DependentUpon>CachingMultipleResponses.aspx</DependentUpon>
+    <Compile Include="UsingApplicationAndSessionApproach.aspx.cs">
+      <DependentUpon>UsingApplicationAndSessionApproach.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CachingMultipleResponses.aspx.designer.cs">
-      <DependentUpon>CachingMultipleResponses.aspx</DependentUpon>
+    <Compile Include="UsingApplicationAndSessionApproach.aspx.designer.cs">
+      <DependentUpon>UsingApplicationAndSessionApproach.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsingCookies.aspx.cs">
+      <DependentUpon>UsingCookies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UsingCookies.aspx.designer.cs">
+      <DependentUpon>UsingCookies.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsingQueryStrings.aspx.cs">
+      <DependentUpon>UsingQueryStrings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UsingQueryStrings.aspx.designer.cs">
+      <DependentUpon>UsingQueryStrings.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Main.Master" />
-    <Content Include="NestedMasterPage.master" />
-    <Content Include="Main2.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
-      <SubType>Designer</SubType>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
-      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -179,9 +135,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>51821</DevelopmentServerPort>
+          <DevelopmentServerPort>64721</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:51821/</IISUrl>
+          <IISUrl>http://localhost:64721/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

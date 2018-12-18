@@ -1,0 +1,180 @@
+﻿          Each request from client to server, a new page with new controls are generated
+            To persist information in te request you can use the following
+
+            View state.  If you enable view state within a control, data in the control will persist in each request whereas the request be in the same page
+            Hidden fields. You can persist data in a hidden in the request of the same page like view state.
+            Session state data will be persisted in a visit, unlike to view state, this approach can persist data in all pages in a visit.
+            Cookies. Data is persisted in the client's computer. unlike to session state you can use this data for many visits fo the client.  
+            Query strings. Data is stored in a URL. for example if you need to mark as favorite a url
+            Application state. Data is stored in the server. It can be accessed by whatever page of the application. If application re start state application is lost.
+
+
+			 You can handle the events in the application stage by modifying Golbal.asax file
+             Add new item in the project and select
+
+
+			 the steps (events) that ocurrs when a client send a request
+			 1. PreInit. Use this when you need to set value to master page or theme, also when you need to create controls dinamically.
+			 2. Init. it event serves to initilize values of controls generated dinamically.
+			 3. InitComplete. This event is triggered when page and its controls have been completed.
+			 4. PreLoad. this event is tiggered before check postback, before view stated has been loaded in pages and controls.
+			 5. Load. You can check in this event postback processing. After this event the event load from its childs controls are tiggered
+			 6. Control (postback) Events. All control Events that generates postback like click event
+			 7. LoadComplete. All controls are loaded.
+			 8. PreRender. this even occurs before ViewState is persisted. over all this event represent the last opportunity to make changes to the page or its controls
+			 9. SaveStateComplete. ViewState for the page and its controls is saved to this point. Whatever change made in the page or its controls are omited. if you need to set a value in ViewState here you ca do it.
+			 10. Render. This is a method and serves to generate Html code. Here you can create a cumtom control.
+			 11. Unload. This event is used to clean code.
+
+			Each control has its own events Init, Load, Render, and Unload
+			And when an event occurs in a page for example, in that time occurs the same event to its childs controls
+			In dinamically created controls is a little different, their events are tiggered until reach the event of the page (or parent control) 
+
+
+			you can persist Data in client, its help to improve performance and scalability
+			the methods are:
+
+			1. View state. it can get back data in controls.
+				it can be changed by the browser user
+				
+				if you need to encrypt the information you can use ViewStateEncryptionMode property on the page. It decreas the performance
+				if you need to encrypt the entire site you can do it in the web.config file
+					<configuration>
+						<system.web>
+							<pages viewStateEncryptionMode="Always"/>
+						</system.web>
+					</configuration>
+				
+				to page-level you need to add the following directive
+					<%@ Page Language="C#" AutoEventWireup="true" ViewStateEncryptionMode="Always"%>
+			
+				DUE TO IT IS POSSIBLE TO ENCRYPT, THIS IS THE MOST SECURE METHOD 
+
+				minimizing the view state you can increase performance
+				you can change Page.EnableViewState and Page.ViewStateMode to control view state
+				you should always keep EnableViewState equals to true and use ViewStateMode to control view state.
+
+				controlling view state from web.config
+
+				<configuration>
+					<system.web>
+						<pages enableViewState="false">
+					</system.web>
+				</configuration>
+			
+
+			2. Control state. it can save data about a control.
+			3. Hidden fields. it can get back data which is hidden to the user.
+				they  persist just in a page as view state but they keep hidden the data
+				also hidden fields has not built-in encryption, hashing or chuking. therefore users can manipulate data
+				you need to use http post
+				
+			4. Cookies. it store Data in the user's browser or file system. The browser send back the data in each request. This approach is useful for save data for a entire web site.
+				Session variable use cookies to be controled.
+
+				the below snippet code add a new cookie
+				Response.Cookies.Add(New HttpCookie("myCookie", myCookie));
+				
+				you can fetch the cookie as follows
+				Request.Cookies["myCookie"].Value
+
+				you can controll the cookie scope(folder or domain)
+				Response.Cookies["myCookie"].Value = DateTime.Now.ToString();
+				Response.Cookies["myCookie"].Expires = DateTime.Now.AddDays(2);
+				Response.Cookies["myCookie"].Path = "/MyFolder";
+
+				by domain
+				Response.Cookies["myCookie"].Value = DateTime.Now.ToString();
+				Response.Cookies["myCookie"].Expires = DateTime.Now.AddDays(2);
+				Response.Cookies["myCookie"].Domain = "salad.com";
+
+				the limit of cookies is up to 20 per site, however you can store many values in a cookie
+				Response.Cookies["myCookie"]["date"] = DateTime.Now.ToString();
+				Response.Cookies["myCookie"]["Name"] = "Steven";
+				Response.Cookies["myCookie"]["nationality"] = "us";
+				Response.Cookies["myCookie"].Expires = DateTime.Now.AddDays(2);
+			
+			5. Query string. it store data at the end of url.
+				 You can sen query string in url, the sintaxis is as follows
+				 ? <parameter name> = <value>
+				 if you need to add more values add &
+				? <parameter name 1> = <value 1> & ? <parameter name 2> = <value 2>
+
+				the limitations are:
+				1. users can change the url easily, therefore validate always the query string
+				2. you must implement it with Get command
+				3. some browsers only allows 2,083 characters
+
+				the advantage is that you can make a reference easily with the url that's way
+				YOU SHOULD USE THEM TO IDENTIFY UNIQUE WEBSITES
+		    
+
+			YOU SHOULD ENCODE COOKIES AND QUERYS REQUESTS
+
+			Choose where to store client or server side.
+
+			Store in server confidential information like passwords to improve security
+			Store in server large amounts of information to reduce bandwith.
+			Store in Client like user name, quantity of items of in a e-commerce to improve scalability.
+			store in Client to an application with multiple servers.
+
+
+			storing in server-side
+			1. Application State
+				Do not store specific information about an user, you shoud use Session state
+			2. Session State
+				it maintains an isolate session state in the server's memory for each user, until session finish
+				by default is stored in server's memory, but it can be stored in cookies in the client side, in SQL server an so on.
+
+				if the web browser allows cookies, asp.net store a cookie, this cookie is called ASP.NET_SessionId. contains a random 24-byte value
+				
+				if web browser do not allows cookies or you configure COOKIELESS session state, the ASP.net use the url to track sessions embedding the session ID in the URL after the application name and before any remaining file or virtual directory identifier.
+				 http://www.myDomain.com/s(lit3234ndl31z5v523333dsfd355)/products.aspx
+				 you can configure COOKIELESS session state as follows
+
+				 <configuration>
+					<system.web>
+						<sessionState cookieless="true"
+						regenerateExpiredSessionId="true" />
+					</system.web>
+				</configuration>
+
+
+				 you can disable session state, in the pages that not require it in order to improve performance
+				 the follow example disable session state of a entire application
+				<configuration>
+					<system.web>
+						<sessionState mode="off"/>
+					</system.web>
+				</configuration>
+
+				A single page can be disable as follows
+
+				<%@ Page Language="C#" AutoEventWireup="true" CodeFile="myWebPage.aspx.cs"
+				Inherits="_Default" EnableSessionState = "False"%>
+
+
+				You can store the session state in:
+
+				InProc : option by default. In the memory of the server.Tt is very secure but  does not promote scalability.
+				StateServer: session state is stored in a service called ASP.NET State Service. it is secure and promotes scalability. you have to set up tu run automatically.
+				SQLServer: session state is stored in a SQL server, promotes scalability, security and offers more data integrity than ASP.NET State Service.
+				Custom: you can specify which provider will store session state, and implement code.
+				Off: To disable session state.
+
+				for configuring session state mode to set Sqlserver 
+
+				<configuration>
+					<system.web>
+						<sessionState
+							mode="SQLServer"
+							cookieless="true"
+							regenerateExpiredSessionId="true"
+							timeout="30"
+							sqlConnectionString="Data Source=MySqlServer;Integrated Security=SSPI;"
+							compressionEnabled="true"
+						stateNetworkTimeout="30"/>
+					</system.web>
+				</configuration>
+
+

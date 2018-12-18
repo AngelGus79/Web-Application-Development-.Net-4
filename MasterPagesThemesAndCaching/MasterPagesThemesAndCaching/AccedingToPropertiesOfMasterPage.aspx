@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Master_Pages__Themes_and_Caching.Formulario_web1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="AccedingToPropertiesOfMasterPage.aspx.cs" Inherits="Master_Pages__Themes_and_Caching.Formulario_web1" %>
 <%@ MasterType VirtualPath="~/Main.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">

@@ -121,9 +121,12 @@ In ASP.Net there are 2 types of caching
 
 			System.Web.Caching.CacheDependency dep1 =
 			new System.Web.Caching.CacheDependency(Server.MapPath("SourceFile.txt"));
+			
 			string[] keyDependencies2 = { "CacheItem1" };
+			
 			System.Web.Caching.CacheDependency dep2 =
 			new System.Web.Caching.CacheDependency(null, keyDependencies2);
+			
 			System.Web.Caching.AggregateCacheDependency aggDep =
 			new System.Web.Caching.AggregateCacheDependency();
 			aggDep.Add(dep1);
@@ -141,6 +144,7 @@ In ASP.Net there are 2 types of caching
 
 	5.2 Page output caching
 	Store rendered pages, or page parts in memory
+	NOTE: CACHE IN CONTENT PAGES WITH VaryByParam DOES NOT WORK PROPERLY
 		5.2.1 you can define how and which page have to be cached
 
 		Duration. seconds to store a page in cache
@@ -155,7 +159,7 @@ In ASP.Net there are 2 types of caching
 		VaryByHeader
 
 		example
-		this snippet code store the page by 30s
+		this snippet code store the page by 30s. the next 30s the same page will be sended to the client
 		<%@ OutputCache Duration="30" VaryByParam="none" %>
 
 		The example below, caches a two copies of the page for different values provided in the search or category query string parameters.

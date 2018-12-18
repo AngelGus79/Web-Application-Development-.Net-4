@@ -11,7 +11,8 @@ namespace Master_Pages__Themes_and_Caching
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            //you can implement caching by code
+
         }
 
         protected void btnOk_Click(object sender, EventArgs e)
