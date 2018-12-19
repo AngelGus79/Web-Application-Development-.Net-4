@@ -34,10 +34,10 @@ namespace HandlingEventsAndManagingStates
         protected void Unnamed1_Click(object sender, EventArgs e)
         {
             //a way to do it is
-           // Response.Cookies.Add(new HttpCookie("myKey","This is the information that I want to store"));
+            Response.Cookies.Add(new HttpCookie("myKey","This is the information that I want to store"));
 
-           
 
+            Label1.Text = Server.HtmlEncode(Request.Cookies["myKey"].Value);
 
         }
     }

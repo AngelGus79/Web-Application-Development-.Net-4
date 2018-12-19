@@ -23,14 +23,12 @@ namespace HandlingEventsAndManagingStates
         protected void btnAccept_Click(object sender, EventArgs e)
         {
             Session["UserName"] = txtSession.Text;
-           
 
         }
 
         protected void btnApplication_Click(object sender, EventArgs e)
         {
             Application["info"] = txtApplication.Text;
-            
 
         }
 

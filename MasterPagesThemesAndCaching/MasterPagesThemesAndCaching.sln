@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterPagesThemesAndCaching
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandlingEventsAndManagingStates", "HandlingEventsAndManagingStates\HandlingEventsAndManagingStates.csproj", "{C244F10F-2A06-4848-9932-69D61FEEC0B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsingServerControls", "UsingServerControls\UsingServerControls.csproj", "{375C9C15-C5F4-44E8-AFC7-7B48D8B22218}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C244F10F-2A06-4848-9932-69D61FEEC0B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C244F10F-2A06-4848-9932-69D61FEEC0B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C244F10F-2A06-4848-9932-69D61FEEC0B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{375C9C15-C5F4-44E8-AFC7-7B48D8B22218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{375C9C15-C5F4-44E8-AFC7-7B48D8B22218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{375C9C15-C5F4-44E8-AFC7-7B48D8B22218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{375C9C15-C5F4-44E8-AFC7-7B48D8B22218}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

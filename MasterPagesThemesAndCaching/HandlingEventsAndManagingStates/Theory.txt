@@ -17,8 +17,8 @@
 			 1. PreInit. Use this when you need to set value to master page or theme, also when you need to create controls dinamically.
 			 2. Init. it event serves to initilize values of controls generated dinamically.
 			 3. InitComplete. This event is triggered when page and its controls have been completed.
-			 4. PreLoad. this event is tiggered before check postback, before view stated has been loaded in pages and controls.
-			 5. Load. You can check in this event postback processing. After this event the event load from its childs controls are tiggered
+			 4. PreLoad. this event is tiggered before checking postback, before view state has been loaded in pages and controls.
+			 5. Load. You can check in this event postback processing. After this event, the event load of its childs controls are tiggered
 			 6. Control (postback) Events. All control Events that generates postback like click event
 			 7. LoadComplete. All controls are loaded.
 			 8. PreRender. this even occurs before ViewState is persisted. over all this event represent the last opportunity to make changes to the page or its controls

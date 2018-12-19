@@ -7,10 +7,10 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace HandlingEventsAndManagingStates {
+namespace UsingServerControls {
     
     
-    public partial class UsingCookies {
+    public partial class UsingXmlControl {
         
         /// <summary>
         /// Control form1.
@@ -22,21 +22,12 @@ namespace HandlingEventsAndManagingStates {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Control Label1.
+        /// Control Xml1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
-        /// Control lblCookies.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCookies;
+        protected global::System.Web.UI.WebControls.Xml Xml1;
     }
 }

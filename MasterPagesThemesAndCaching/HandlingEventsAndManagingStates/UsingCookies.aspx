@@ -10,6 +10,8 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:Label Text="" ID="Label1" runat="server" />
+            <br />
             <asp:Label Text="" ID="lblCookies" runat="server" />
             <br />
             <asp:Button Text="Add Cookie" runat="server" OnClick="Unnamed1_Click" />

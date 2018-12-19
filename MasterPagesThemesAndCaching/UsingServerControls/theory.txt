@@ -1,0 +1,156 @@
+﻿Label Control
+	Configuring property AccessKey property to keyboard shortcut
+	1. it works when you associate a label with a checkbox, Textbox or ListBox
+	so, you have to add one pair.
+	2. set in the label
+		2.1  in the label AccessKey property the letter of your choice
+		example if you select P, to get focus in the ASSOCIATED control
+		the user should press Alt + p
+
+		2.2 In order the user realize witch letter press you can
+		underline the letter in the label text property . If the label text property  is set with BirthDay
+		and you want to underline B, you have to write as follows
+		text="<u>B</u>irthDay"
+
+		2.3 Finally, you need to set in label AssociatedControlID property
+		the ID of the associted control, if for example you associate a text box
+		with an ID equals to txtBirthDay, you have to set it as follows
+		AssociatedControlID="txtBirthDay"
+
+
+
+The Literal Control
+
+	If you need to add raw html control, you can use this.
+	Mode property can set as follows
+
+	PassThrough	  Content allows raw html, so you can pass html code and scripts etc.
+	Encode		  Content is treated as text.
+	Transform	  It converts the Content to match with html, xhtml or an markup language
+				  if content is html, the code is sended to the browser
+				  if content has invalid tags, they are removed
+			   
+TextBox Control
+
+	TextMode property
+			SingleLine (by default)
+			MultiLine 
+				User can enter many lines.
+				You can use this property with rows and columns properties
+				to set how many character will be allowed to enter as columns and as rows
+			Password
+	MaxLength property
+			use it to set the number of characters allowed in the textbox
+
+	Wrap property
+			fit content text automatically in the next line to
+			adjust with the with size of the text box
+		
+RadioButton Control
+	use GroupName property to group many radiobutton controls
+	Also you can use a RadioButtonList control
+
+
+Image Control
+	Set the url of the image
+	Image1.ImageUrl = "https://i.pinimg.com/originals/69/d5/fe/69d5fed4b68abeb9873bb1a45c4acbb4.jpg";
+    
+	Accesibility porperty
+	Image1.DescriptionUrl = "https://www.pinterest.com.mx/pin/473089135848260886/";
+    
+	if the image is not charged, this text appears
+       Image1.AlternateText = "This is an alternative text if image is not available";
+	 
+	it generates an <img> tag
+
+ImageButton
+	 this control has a click event, and the coordinates where were clicked can be fetch
+     it generates an <input type="image"> tag
+     myImagenButton.ImageUrl = "https://i.pinimg.com/originals/69/d5/fe/69d5fed4b68abeb9873bb1a45c4acbb4.jpg"; ;
+
+ImageMap 
+	 It has a click event where you can fetch coordinates of location where was clicked
+	 you can set areas called hot spots to define where click event occurs
+	 it generates a <img usemap="#myMap">
+	 the hotspot elements can be CircleHotSpot, RectangleHotSpot, and PolygonHotSpot elements
+	 
+	 Hotspot clase has the following properties
+		AccessKey		keyboard shortcut for a hotspot
+		AlternateText	Text that appears when hotspot cannot be rendered
+		HotSpotMode		it is the way as hotspot responds (NotSet, Inactive, Navigate, or PostBack.)
+							if you configure Hotspot in a hotspot and ImageMap, hotspot takes precedence.
+							So set ImageMap HotSpotMode property in HotSpot and HotSpot HotSpot Property in NotSet
+							in order to HotSpot inherit the behavior
+
+							set HotSpot HotSpotMode property in postback to generate a postback
+							PostBackValue property is fetched in the imageMapEventArgs
+
+							set HotSpot HotSpotMode property in inactive disables behavior in Hotspot
+							you can use this when you have smaller hotspots over the inative one.
+
+		NavigateUrl		url where browser go when hotspot is clicked
+		PostBackValue	string returned to the server when hotspot is clicked
+		Target			target window or frame that displays the webpage
+
+
+Calendar 
+	it generates a <table> with javascript code attached
+	you can select one or many dates with SelectionMode property.
+	selection can be per:
+		Day  a day
+		Week  a day or a week 
+		WeekMonth  a day, a week or a month
+		one  disable selection
+
+	SelectedDates property is a DateTime Collection to fetch the selected dates
+	SelectionChanged event occurs when a new date is selected
+	VisibleMonthChanged event occurs when a user select a new Month
+
+FileUpload
+	it generates a <input type="file"> tag
+	you need to generate postback with a Button control or another
+	postback makes that file be charged in the server memory
+	you can acess to the uploaded file as
+		FileBytes	file is presented as a byte array
+		FileContent  -    -       -   -   - stream
+		PostedFile   -    -       -   -   - HttpPostedFile 
+			some of the HttpPostedFile properties are ContentType and ContentLength
+			you need to verify the file before to be saved like extensions, size, etc.
+			after this you can store it with SaveAs method.
+			You need a path with permission to be able to store a file.
+			requireRootedSaveAsPath attribute set in true in web.config file allows you save a file with an absolute path
+			absolute path means the path of the file system of the server.
+			To get the absolute path you can do is as follows
+			
+			MapPath("~/myFiles/" + FileUpload1.FileName))
+			~ is the root application folder
+
+			the MaxRequestLength attribute at the httpRuntime configuration element in the web.config set the maximun size allowed to the file if the size file is greather the upload fails.
+
+Panel Control
+	This object is used as a Controls container. So you can enabled or disabled the group
+	or make them visible or invisible
+	this generate a <div>
+
+Multiview and View Control
+	view group controls. Multiview contains many views.
+	it is used to make wizards where each view is an step of wizard
+	With ActiveViewIndex property set the visible view(or active view)
+	also you can do it with SetActiveView method 
+	set ActiveViewIndex = -1 to make invisible all views
+
+Wizard
+	the control is created with Multiview
+	to fetch values in the wizard
+	go to the NextButtonClick event and compare the name of the title of wizard
+	A wizard class contains 
+		many WizardStep class and at the same time it contains
+			many Control Class 
+
+Xml Control
+	this control serves to give format to a xml file.
+	To do this you need a xml file with data and
+	another file XSL which contains instructions to format
+	In the web form UsingXmlControl an example is 
+	given using an xml and xls file of the web page https://www.w3schools.com/xml/xml_xslt.asp
+
