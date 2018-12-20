@@ -1,0 +1,68 @@
+﻿you can associate many validation controls to a input control
+By default, when you use validation controls, you are creating validators in the client-side and in the server-side
+
+Server side
+	only if all validations of validation controls are right,
+	Page.IsValid is automatically set to true. Therefore you need to validate
+	IsValid property before run code in the methods
+Client side
+	you can disable client-side validation by setting to false validation control's EnableClientScript property. 	
+	When a control associated to an validation control loose focus, validation client-side take place.
+	You can set Validation control's SetFocusOnError property to true for invalid control get focus automatically.
+	You can use focus method to set focus to a control.
+
+CauseValidation property 
+	Setting CausesValidation property to false avoids validation take place.
+	This is useful when you have Cancel Buttons that does not need validation in postback.
+
+Validation Groups
+	Set a GroupName to ValidationGroup property in all the validation controls and a generating postback control, to validate only the group of controls
+	When you verify IsValid property only the controls group will be validated.
+	You can use verify Page.Validate("GroupName") method to specify which gropu to validate
+	Page.GetValidators("GroupName") returns the objects in the group
+
+RequiredFieldValidator Control
+	verify that an entry is entered in the control. white spaces does not represent an entry
+	InitialValue property is used when you want to make sure that an entry does not be selected.
+	For example the <select an option..> value set in a drop down list.
+CompareValidator Control
+	this control uses ControlToValidate and ControlToCompare
+		you can compare values (greather than, equal to..)
+
+		you can compare types of values (if is number, date, etc..)
+			set type property to the especific type
+			also you can set Operator property to DataTypeCheck
+RangeValidator Control	
+	verify if the entry is within a range by using MinimumValue and MaximumValue properties
+RegularExpressionValidator Control
+	set ValidationExpression property to an valid regular expression
+	you can use the regular expression Editor box, which has some common regular expression
+
+
+CustomValidator
+	Client side
+		1. Write a script with the following firm
+			function myFunction(source, arguments)
+			arguments.Value contains the value to be validated
+			set arguments.IsValid = true if there is no fails.
+		2. Set ClientFunctionName property to the name of the function
+	Server side
+		1. write into the ServerValidate event the code
+			protected void myMethod_ServerValidate(object source, ServerValidateEventArgs args)
+			args.Value contains the value to be validated
+			set args.IsValid = true if there is no fails.
+ValidationSummary
+	ShowMessageBox      set to true for displaying a pop-up message with the validation errors of all validation errors
+    ValidationGroup		Set ValidationGroup to the group name, if you have to display errors from a group
+						
+Common Properties
+
+	ControlToValidate  is used to associate a control to be validated
+	ErrorMessage	   Server to set an error message when you use a  ValidationSummary control
+	Text			   Set the error message commonly near of the control, if you use ValidationSummary, you can put a short character (*) 
+	tooltip			   display a tooltip message if validation fails, commonly used to set a error message
+	Display			   Control where to display message you can set the following values
+		None		   hidde the Text property						
+		Static		   show Text Property
+		Dynamic		   reformat the output close to the Text
+	
