@@ -65,4 +65,68 @@ Common Properties
 		None		   hidde the Text property						
 		Static		   show Text Property
 		Dynamic		   reformat the output close to the Text
-	
+
+
+Methods to navigate Pages
+
+	1. Client-side Navigation
+		Client-side code request a new page (javascript)
+		If you want to send information you need to append query string to the url
+		you can create this request by
+		1.1 using a HyperLink Control
+			<asp:HyperLink ID="myHyperLink"
+			  runat="server" NavigateUrl="~/myNewPage.aspx">Go to New Page</asp:HyperLink>
+			  which render in a <a> tag.
+		1.2  creating a javascript code, in the header of the source page
+			<script type="text/javascript">
+					function MakeARequest() 
+					{
+						document.location="myNewPage.aspx";
+					}
+			</script>
+
+			And in a button make a reference in the onclick attribute
+			<input  onclick="MakeARequest()" id="Button1" type="button" value="Goto myNewPage"  />
+			
+		
+	2. Cross-page Posting
+	   a page send a postback to a different page
+	   to send data from a origin page to a processing page you have to do the following
+	   
+	   2.1 Into the origin page
+			2.1.1 Encapsulate the input controls (i.e. TextBox) which have data that you want to be sent 
+			2.1.2 Set the Button PostBack property to the processing page url, you can use another control that generate postback 
+	   2.2 Into the Processing page
+		    2.2.1 Add to the processing page the <%@ PreviousPage directive and associate the origin page	
+				<%@ PreviousPageType VirtualPath="~/OriginPage.aspx" %>
+			2.2.2 Get access to the property in the processing page
+				if(Page.PreviousPage != null)
+					lblName.Text = PreviousPage.MyUserName.Text;
+				if you do not want to encapsulate the control you can use
+					Server.HtmlEncode(((TextBox)PreviousPage.FindControl("MyUserName")).Text);
+					
+
+	3. Client-side Browser redirect
+		From server-side code, an instruction to the web browser is given to make a new request to a different url
+		so, an extra request is generated.
+			Response.Redirect("you new url");
+
+		PreviousPage is NOT populted with Client-side Browser redirect 
+
+	4. Server-side Transfer
+		Transfer control to a new webpage since server-side code
+			Server.Transfer("a new url", false);
+
+			the second parameter is called PreserveForm, it serves to keep form and query string data.
+			PrevousPage is pupulated with server-side Transfer
+
+Using Map Navigation
+	1. Site Map, it is a xml file to enter a hierarchy of the site
+	you ca use the class in code-behind
+		protected void Button1_Click(object sender, EventArgs e)
+			{
+				Response.Redirect(SiteMap.CurrentNode.ChildNode.Url);
+			}
+	2. SiteMapDataSource Control. By adding a SiteMapDataSource in the page Site Map
+	3. Navigation Control like Menu, TreeView and SiteMapPath
+		all you need to set DataSourceID to SiteMapDataSource ID

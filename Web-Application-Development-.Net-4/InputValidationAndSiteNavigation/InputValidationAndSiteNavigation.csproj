@@ -17,8 +17,8 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressAnonymousAuthentication>disabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -68,21 +68,87 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Home.aspx" />
+    <Content Include="myControl.ascx" />
+    <Content Include="OriginPage.aspx" />
+    <Content Include="ProcessingPage.aspx" />
+    <Content Include="Schedule.aspx" />
+    <Content Include="Services.aspx" />
+    <Content Include="SiteMap.aspx" />
     <Content Include="theory.txt" />
     <Content Include="UsingInputValidationControls.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="UsingWebParts.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="myControl.ascx.cs">
+      <DependentUpon>myControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="myControl.ascx.designer.cs">
+      <DependentUpon>myControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="OriginPage.aspx.cs">
+      <DependentUpon>OriginPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OriginPage.aspx.designer.cs">
+      <DependentUpon>OriginPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessingPage.aspx.cs">
+      <DependentUpon>ProcessingPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProcessingPage.aspx.designer.cs">
+      <DependentUpon>ProcessingPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schedule.aspx.cs">
+      <DependentUpon>Schedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Schedule.aspx.designer.cs">
+      <DependentUpon>Schedule.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Services.aspx.cs">
+      <DependentUpon>Services.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Services.aspx.designer.cs">
+      <DependentUpon>Services.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SiteMap.aspx.cs">
+      <DependentUpon>SiteMap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteMap.aspx.designer.cs">
+      <DependentUpon>SiteMap.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UsingInputValidationControls.aspx.cs">
       <DependentUpon>UsingInputValidationControls.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UsingInputValidationControls.aspx.designer.cs">
       <DependentUpon>UsingInputValidationControls.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsingWebParts.aspx.cs">
+      <DependentUpon>UsingWebParts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UsingWebParts.aspx.designer.cs">
+      <DependentUpon>UsingWebParts.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +159,7 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

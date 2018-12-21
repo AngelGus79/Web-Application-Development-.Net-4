@@ -17,9 +17,6 @@ namespace InputValidationAndSiteNavigation
             }
         }
 
-       
-       
-
         protected void btnNext_Click(object sender, EventArgs e)
         {
             switch (myWizard.ActiveViewIndex)

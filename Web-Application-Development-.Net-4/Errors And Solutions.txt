@@ -9,7 +9,37 @@
 			Delete <bin> and <obj> folders
 
 
+2. Error when you add a WebPartManager WebPart
+Error relacionado con la red o específico de la instancia mientras se establecía una conexión con el servidor SQL Server. No se encontró el servidor o éste no estaba accesible. Compruebe que el nombre de la instancia es correcto y que SQL Server está configurado para admitir conexiones remotas. (provider: SQL Network Interfaces, error: 26 - Error al buscar el servidor o instancia especificado)
+	
+	Solution 1
+		 Goto WebPartManager properties and set Personalization > Enable to false
+	
+	Explanation
+		It is because webpartmanager works with a sqlserver database
 
-		
-		
+	Solution 2
+	    In the case that you need to use Personalization > Enable to false
+		2.1 execute C:\Windows\Microsoft.NET\Framework\v4.0.30319\aspnet_regsql.exe
 
+		2.2 add a connectionstring in web.config
+		<connectionStrings>
+			<remove name="LocalSqlServer"/>
+			<add name="LocalSqlServer" connectionString="Data Source=(local)\sqlexpress2016; Initial Catalog=db1; Integrated Security=true" providerName="System.Data.SqlClient"/>
+		</connectionStrings>
+
+3. When you add Validation controls, this error can be triggered 
+UnobtrusiveValidationMode de WebForms requiere un ScriptResourceMapping para 'jquery'. Agregue un ScriptResourceMapping con nombre jquery(distinguir mayúsculas de minúsculas)
+
+		Solution 1. add to the web.config file
+		<appSettings>
+			<add key="ValidationSettings:UnobtrusiveValidationMode" value="None" />
+		</appSettings>
+
+4. When try to set WebPartManager1.DisplayMode = WebPartManager.CatalogDisplayMode;
+The specified display mode is currently disabled on this page. Make sure personalization is enabled for the current user.
+Parameter name: value
+
+		Solution 1. Go to Website properties (Click on web application and click F4 key)
+					enabled Windows authentication
+					disabled anonymus authentication
