@@ -1,0 +1,140 @@
+﻿Local Resource
+	Only in one webform, you can use this resource.
+	
+	If you already have a webform with controls and you generate a local resource,
+	for some string type properties a markup will be created. This approach is called implicit generation.
+
+Generating Local Resource
+	To Generate a Local Resource 
+	1. You MUST have your webpage opened in DESIGN VIEW
+	2. Then go to  Tools > Generate Local Resource.
+		And a folder called App_LocalResources will be created.
+		Inside the folder a file will be created with the name of your web page but with
+		a ".resx" extension appened (WebPageName.aspx.resx). Inside the file you will find
+		all Control's properties of string type generated implicitly.
+
+Adding a new Language
+	To create a new language (Local resource), 
+	1. Copy-paste the resource file generated and change the name, asp.net use the name to select the language based in  standarized names
+	
+		Example, if you want to create  a spanish language, all you need to do is:
+		add to the generated file
+	
+			UsingLocalResourceFile.aspx.resx
+		a standarized letters for spanish before the extension (.es)
+			UsingLocalResourceFile.aspx.es.resx
+	
+		you can find the standarized letters in
+			http://msdn.microsoft.com/en-us/goglobal/bb896001.aspx
+
+	2.- Change proper language to the entries inside the new file
+
+Attaching Controls and Local Resource Explicitly
+
+	If you have to add more controls, to attach the new properties 
+	you have to do the following
+	1. For each property in the control add the markup with the following format
+	
+		<%$Resources:,lblWelcomeResource1.Text %>
+		example:
+		<asp:Label Text="<%$Resources:,lblWelcomeResource1.Text %>"  ToolTip="<%$Resources:, lblWelcomeResource1.ToolTip %>" ID="lblWelcome" runat="server" />
+		note that to the ID of control is attached Resource1 after this the property
+	2. Append all properties  into each resource file with its proper language
+		example for one resource
+		LblWelcomeResource1.Text	Bienvenido	
+		LblWelcomeResource1.ToolTip	Bienvenido	
+
+Culture
+	Culture is the specific format used in some countries in for example currency, date and time etc.
+	For example in Mexico there is a different format in currency than in spain however the language is the same.
+	To specify this issue a standarized format is used. It is as follows
+		language-culture
+		es-MX
+	if you need to use this feature, all you need is to attach the culture to the name of the file.
+	If you need to attach a culture for spain and one for mexico you would do the follows
+	Add a file named for spain (you also can specify es-ES for spain)
+		UsingLocalResourceFile.aspx.es.resx
+	And Add another for mexico
+		UsingLocalResourceFile.aspx.es-MX.resx
+	
+Define a culture to a page
+	you can force a culture to a Webpage
+		<%@ Page Language="C#" AutoEventWireup="true" Culture="es-ES" UICulture="es-ES" CodeBehind="yourpage.aspx.cs" Inherits="yoursite.yourpage" %>
+
+
+
+Generating Global Resource
+	You can share this resource in all pages in a web site
+	To create a Global resource
+	1.- right-click in the Web Application > Add > ASP.Net Folder > App_GlobalResources 
+	2.- right-click in the App_GlobalResources folder > add > new item > Resources File
+	3.- Add the resources in the file (this is your default resource file, for more languages do the same than local resource)
+		In this case, you can write whatever name for the resource
+
+Associating resources with controls
+	1. go to each control property (in design mode) > expressions 
+		1.1 into binding properties. select the language-changed property
+		1.2 into expression type. select resources
+		1.3 into expression properties
+			1.3.1 classkey	 <name of Global Resource File without extension>
+			1.3.2 resourcekey <name of resource>
+
+		Repeat all the steps for each property
+	
+	Another way to do it is:
+	1. bind resources by writting the directive into controls' properties
+	example
+	<asp:Label Text="<%$ Resources: myGlobalResources, PhoneNumber %>" ID="lblPhone" runat="server" />
+
+ WHEN USE GLOBAL RESOURCE, SET WEB.CONFIG AS FOLLOWS TO AVOID ISSUES
+<system.web>
+    <globalization uiCulture="auto" culture="auto" />
+ </system.web>
+
+Set web.config to force a culture
+		<globalization uiculture="es" culture="es-MX" />
+
+Access to resources in code-behind
+	you can use GetLocalResourceObject and GetGlobalResourceObject methods
+
+		TxtPhoneNumber.Text = GetLocalResourceObject("TxtPhoneNumber.Text").ToString();
+		TxtPhoneNumber.Text = (String)GetGlobalResourceObject("myGlobalResource", "PhoneNumber");
+
+	or simply if you are using only global resource
+
+		TxtPhoneNumber.Text = Resources.MyGlobalResource.PhoneNumber;
+
+Page Properties
+	Culture
+		you can set the culture. You can NOT set Culture to neutral culture.
+		example you have to use "es-ES" instead of simply "es".
+	UICulture
+		it defines which resource will be loaded
+		you can use neutral or specific culture (example you can use "es" or "es-ES")
+
+	to use them you have to override page's InitializeCulture method
+	protected override void InitializeCulture()
+	{
+		if (Request.Form["DropDownListLanguages"] != null)
+		{
+			UICulture = Request.Form["DropDownListLanguages"];
+			Culture = Request.Form["DropDownListLanguages"];
+		}
+		base.InitializeCulture();
+	}
+
+	to get available languages you can use
+	System.Globalization.CultureInfo.GetCultures(CultureTypes) method
+	CultureTypes is a enumeration with the following values:
+	-SpecificCultures
+	-NeutralCultures
+	-AllCultures (SpecificCultures and  NeutralCultures)
+
+	CultureInfo[] cultures =  System.Globalization.CultureInfo.GetCultures( CultureTypes.SpecificCultures);
+
+    foreach (CultureInfo culture in cultures)
+    {
+        myDropDownListLanguages.Items.Add(new ListItem(culture.DisplayName,culture.Name));
+    }
+
+
