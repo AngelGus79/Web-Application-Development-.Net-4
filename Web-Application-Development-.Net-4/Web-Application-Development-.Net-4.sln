@@ -17,7 +17,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsingServerControls", "Usin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputValidationAndSiteNavigation", "InputValidationAndSiteNavigation\InputValidationAndSiteNavigation.csproj", "{75CEB089-89DB-4A3D-82EE-DBB0BABEDDF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalizationAndAccessibility", "Globalization and\GlobalizationAndAccessibility.csproj", "{8B2E0567-75C2-4370-B13B-328E2D08A85B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreatingCustomWebControls", "CreatingCustomWebControls\CreatingCustomWebControls.csproj", "{5DE3A18B-5094-4B76-99D5-E4C783875585}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerControl", "ServerControl\ServerControl.csproj", "{075ADB41-3159-41CB-BE12-D51D7B785017}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompositeServerControl", "CompositeControl\CompositeServerControl.csproj", "{6DE8C437-EBB9-449A-A9CF-5D4FFDC700D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplatedCustomWebServerControl", "TemplatedCustomWebServerControl\TemplatedCustomWebServerControl.csproj", "{BF22AC1C-5D52-489E-88AA-2883F7169A62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalizationAndAccessibility", "Globalization\GlobalizationAndAccessibility.csproj", "{8B2E0567-75C2-4370-B13B-328E2D08A85B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +49,22 @@ Global
 		{75CEB089-89DB-4A3D-82EE-DBB0BABEDDF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75CEB089-89DB-4A3D-82EE-DBB0BABEDDF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75CEB089-89DB-4A3D-82EE-DBB0BABEDDF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DE3A18B-5094-4B76-99D5-E4C783875585}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DE3A18B-5094-4B76-99D5-E4C783875585}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DE3A18B-5094-4B76-99D5-E4C783875585}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DE3A18B-5094-4B76-99D5-E4C783875585}.Release|Any CPU.Build.0 = Release|Any CPU
+		{075ADB41-3159-41CB-BE12-D51D7B785017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{075ADB41-3159-41CB-BE12-D51D7B785017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{075ADB41-3159-41CB-BE12-D51D7B785017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{075ADB41-3159-41CB-BE12-D51D7B785017}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DE8C437-EBB9-449A-A9CF-5D4FFDC700D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DE8C437-EBB9-449A-A9CF-5D4FFDC700D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DE8C437-EBB9-449A-A9CF-5D4FFDC700D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DE8C437-EBB9-449A-A9CF-5D4FFDC700D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF22AC1C-5D52-489E-88AA-2883F7169A62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF22AC1C-5D52-489E-88AA-2883F7169A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF22AC1C-5D52-489E-88AA-2883F7169A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF22AC1C-5D52-489E-88AA-2883F7169A62}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8B2E0567-75C2-4370-B13B-328E2D08A85B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8B2E0567-75C2-4370-B13B-328E2D08A85B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B2E0567-75C2-4370-B13B-328E2D08A85B}.Release|Any CPU.ActiveCfg = Release|Any CPU
