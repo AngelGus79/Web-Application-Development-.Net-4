@@ -27,6 +27,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplatedCustomWebServerCon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GlobalizationAndAccessibility", "Globalization\GlobalizationAndAccessibility.csproj", "{8B2E0567-75C2-4370-B13B-328E2D08A85B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebuggingAndDeploying", "DebuggingAndDeploying\DebuggingAndDeploying.csproj", "{00D71BB5-B354-4FD7-9801-E92BD6662E59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsingScriptingClientSideAjaxAndJquery", "UsingScriptingClientSideAjaxAndJquery\UsingScriptingClientSideAjaxAndJquery.csproj", "{A26554CE-E3AE-4D66-A691-1ADA69E0BC52}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{8B2E0567-75C2-4370-B13B-328E2D08A85B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B2E0567-75C2-4370-B13B-328E2D08A85B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B2E0567-75C2-4370-B13B-328E2D08A85B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00D71BB5-B354-4FD7-9801-E92BD6662E59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00D71BB5-B354-4FD7-9801-E92BD6662E59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00D71BB5-B354-4FD7-9801-E92BD6662E59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00D71BB5-B354-4FD7-9801-E92BD6662E59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A26554CE-E3AE-4D66-A691-1ADA69E0BC52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A26554CE-E3AE-4D66-A691-1ADA69E0BC52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A26554CE-E3AE-4D66-A691-1ADA69E0BC52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A26554CE-E3AE-4D66-A691-1ADA69E0BC52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

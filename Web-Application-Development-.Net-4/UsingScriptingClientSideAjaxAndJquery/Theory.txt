@@ -1,0 +1,124 @@
+﻿Ajax Server Controls
+
+	ScriptManager and ScriptManagerProxy
+
+		You must drag ONE control in each page where you use Ajax User Controls.
+		It must be put inside the form tag.
+	
+		If you have to use ajax server controls inside a user control 
+		and the page where the user control will be drag have a ScriptManager 
+		you must use ScriptManagerProxy inside the user control.
+
+	UpdatePanel
+		It is a container of controls, A postback generated with a control 
+		inside updatepanel control, will be updated independently of outside controls.
+
+		The asynchronous postback go through all events but just render
+		a specific content
+
+		It makes a postback of the portion controls inside of update panel.
+		
+		In the following example, when button is clicked LblInside is changed.
+		Even other outside labels were updated on on_load event, just LblIndise Control
+		will be updated.
+
+		<asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Always" runat="server">
+			<ContentTemplate>
+				<asp:Button ID="btnInside" runat="server" Text="InsidePanel1" OnClick="btnInside_Click" />
+				<asp:Label ID="LblInside" runat="server" Text=""></asp:Label>
+			</ContentTemplate>
+		</asp:UpdatePanel>
+
+		protected void btnInside_Click(object sender, EventArgs e)
+        {
+            LblInside.Text = DateTime.Now.ToString();
+        }
+
+		two importan properties:
+
+			1) UpdateMode set to
+				Always :  the content of updatepanel will be updated in each standard postback
+				Optional: In the case of nested updatepanel, if you set to conditional the nested panel
+						  it will be updated only when parent updatepanel generate postback.
+						  
+			2) ChildrenAsTriggers
+				True :    The nested updatepanel controls do not generate that parent updatepanel
+						  content be updated by default. To achive it you have to set ChildrenAsTriggers parent
+					      updatepanel property to true. 			
+
+		
+		you can specify which controls will trigger postback to update
+		the updatepanel content. Those controls can be inside or outside.
+		They will update in always and optional updatemode.
+			
+			<asp:UpdatePanel ID="UpdatePanel2" runat="server">
+				<Triggers>
+					<asp:AsyncPostBackTrigger ControlID="Timer1" />
+				</Triggers>
+				<ContentTemplate>
+					<asp:Label Text="" ID="LblNow" runat="server" />
+				</ContentTemplate>
+			</asp:UpdatePanel>
+
+		you can handle error by writting AsyncPostBackError in the scriptmanager control
+
+		if you have 2 updatepanels in the same webform and you need to update
+		sepparately, you need to use Updatemode = "Conditional" and create a trigger.
+		The specific updatePanel content will be updated just with
+		that asynchronous postbask and with the standard postback
+		
+	
+	UpdateProgress 
+		you can attach a gif, image, text, etx to simulate progress
+
+		you can associate UpdateProgress control with a updatepanel control by:
+			1) drag it inside a updatepanel ContentTemplate tag 
+			2) with AssociatedUpdatePanelId property when updatecontrol is outside
+
+		If updateprogress is not associated, it will be triggered when
+		asynchronous postback be generated
+
+		You can set when updateprogress starts by setting DisplayAfter property to
+		a value in miliseconds, by default it starts at 0.5 miliseconds
+
+	Timer Control
+		it is triggered periodically. It generates an asynchronous postback and
+		by default it updates all updatepanel when their updatemode property is set to Always
+		
+		You can associate the timer by creatting a trigger
+
+		To avoid that timer control update all updatepanels. You must
+		to set their update mode to Conditional and create a trigger
+		with another postback control.
+		In the following example only  UpdatePanel4 is modified with timer1
+
+		<asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" runat="server">
+			<Triggers>
+				<asp:AsyncPostBackTrigger ControlID="btnInside" EventName="Click" />
+			</Triggers>
+			<ContentTemplate>
+				<asp:Button ID="btnInside" runat="server" Text="InsidePanel1" OnClick="btnInside_Click" />
+				<asp:Label ID="LblInside" runat="server" Text=""></asp:Label>
+				<br />
+			</ContentTemplate>
+		</asp:UpdatePanel>
+		
+		<asp:UpdatePanel ID="UpdatePanel3" UpdateMode="Conditional" runat="server">
+			<Triggers>
+				<asp:AsyncPostBackTrigger ControlID="btnPanel3" EventName="Click" />
+			</Triggers>
+			<ContentTemplate>
+				<asp:Button ID="btnPanel3" Text="btnPanel3" runat="server" OnClick="Unnamed2_Click" />
+				<br /> <asp:Label Text="" ID="LblPanel3" runat="server" />
+			</ContentTemplate>
+		</asp:UpdatePanel>
+		
+		<asp:UpdatePanel ID="UpdatePanel4" runat="server">
+			<ContentTemplate>
+				<asp:Timer ID="Timer1" Interval="500"  runat="server" OnTick="Timer1_Tick"></asp:Timer>
+				<asp:Label ID="LblTimer" runat="server" Text="Label"></asp:Label>
+			</ContentTemplate>
+		</asp:UpdatePanel>
+
+		When timer is inside the updatepanel, it waits postback to complete to restart.
+		When timer is outside the updatepanel, it restart as soon as fires.

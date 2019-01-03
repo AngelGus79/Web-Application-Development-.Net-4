@@ -1,0 +1,191 @@
+﻿I) Configuration for debugging
+	You can (enable/disable) debugging in:
+	1) web.config file
+		
+		<configuration>
+			<system.web>
+				<compilation debug="true" targetFramework="4.0"/>
+			<system.web>
+		</configuration>
+
+		at the page-level you can set
+		
+		<%@ Page Debug="true" ... %>
+
+		TO ENABLE DEBUGGIN IN SPECIFIC PAGES, DISABLE DEBUG IN WEB.CONFIG
+		AND ENABLE DEBUG IN THE SPECiFIC PAGES
+
+	2) project's properties  page
+		project's properties / start options / ASP.Net ((enable/disable) checkbox in the debugger area)
+
+
+You can export/import breakpoints to/from a file, to make easier debugging
+	1.-make all breakpoints (puntos de interrupcion) you need 
+	2.-Go to    Debug (menu) / windows / breakpoints
+	3.- in the window, there are buttons to import/export
+
+If you put the pointer over a variable while you are debugging step-by step
+you can see the value of the variable. And if you click the pin icon
+the variable's value always will be visible. You can write a message as well
+to remind you what is about.
+
+
+You can avoid that website's users see website unhandled exception message (This help to improve security)
+by:
+
+1) Redirecting to a error page in the web.config file
+
+	<configuration>
+		<system.web>
+			<customErrors defaultRedirect="ErrorPage.aspx" mode="RemoteOnly">
+		</customErrors>
+		<system.web>
+	</configuration>
+
+	set mode="RemoteOnly" to redirect the errors to the page set in defaultRedirect attribute.
+	Only remote requests will be redirected when a unhandled exception occurs.
+	If you made requests from server and an exception occurs, you will see the exception message
+	Therefore you can continue debugging from the server.
+
+	The error page show to users the page that generates the error as a ery string.
+	http://www.mySite.com/ErrorPage.aspx?aspxerrorpath=/Default.aspx
+
+	1.1) You can specify pages according to a specific error-code
+		
+		<configuration>
+			<system.web>
+				<customErrors defaultRedirect="ErrorPage.aspx" mode="RemoteOnly">
+					<error statusCode="403" redirect="PageError403.aspx" />
+				</customErrors>
+			<system.web>
+		</configuration>
+
+
+You can debug remotely. Follow the next steps :
+	
+	1) Install in the server, visual studio remote debugging monitor application (msvsmon.exe)
+		1.1) You can find the monitor in Program C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\Remote Debugger\x64
+			Program File(x86) if you have windows 64 bits.
+			Microsoft provides the monitor application in one of its official websites.
+		1.2) set the server name to an user and to a server. jhon@jhonMachine
+			run a instance of the monitor application for each user who debugs
+	2) Debug in your remote pc (you need to have the source code)
+		
+		2.1) Attactch to process
+			2.1.1) set qualifier to the server name
+			2.1.2) select the process to debug
+
+
+You can debug scripts with internet explorer by:
+	1) going to   .../development tools
+
+
+II) Troubleshooting WebSites
+
+	You can implementate tracing of 2 ways
+		1) Configuring Web.config file by. (It automatically generate logs)
+		
+			1.1) writing directly in the web.config file
+				<configuration>
+					<system.web>
+						<trace enabled="true" <!-- enable tracing -->
+						requestLimit="100" <!--only the 100 most recent logs will be cached -->
+						pageOutput="false" <!--The data will only be viewable through the trace log and not on each individual page -->
+						traceMode="SortByTime" <!--The trace log will be sorted by time -->
+						localOnly="false"    <!--define wheather local or also remote requests -->
+						mostRecent="true" /> <!-- only most recent will be cached -->
+					<system.web>
+				</configuration>
+
+			1.2) using ASP.NET Web Site Administration Tool (WSAT)
+				2.1) Application (tab) / capture tracing information (checkbox) 
+				2.2) set all trancing parameters
+
+
+			you can implementate tracing in specific pages
+				1) <@Page trace="true" ... />
+		
+		2) Generating Custom trace data
+			2.1) You can use Page Trace member class.
+				 You need to have enabled tracing in web.config.
+				 
+				 protected void Page_Init(object sender, EventArgs e) 
+				 {
+					Trace.Write("myCategory", "Page_Init called");
+				 }
+				 
+
+				 you can use a category to make easier to find your customized trace
+
+You can view the trace data at:
+	1) the bottom of each webpage 
+	2) navigating in http://myServer/myApplication/trace.axd. There are many sections that agroup kinds of tracing data. It serves for troubleshooting of performance, and another problems
+
+	Be sure to disable page tracing on production web servers (to prevent security risks).
+
+
+Next are 2 ways for tracing scripts
+	1)You can use Sys.Debug.trace:
+		1.1) add a ScriptManager control
+		1.2) use Sys.Debug class
+			<script language="javascript" type="text/javascript">
+				function myButton_onclick() {
+					Sys.Debug.trace("myButton was clicked");
+				}
+			</script>
+
+		Next are two ways how you can view script tracing
+			1) You need to use internet explorer, visual studio in the machine where your webpage is running
+			2) create a TextArea control and set control’s ID to TraceConsole
+
+	
+	2) You can debug javascript code by using Firebug plug-in for the Firefox browser
+
+
+
+Monitoring your website in a Deployed Environment. Health monitoring tools (System.Web.Management namespace)
+
+	You can monitor defined events in a website and show the track with a listener (provider).
+	therefore you need to associate an event with a listener by a rule.
+
+	The next example show how to make rules in the web.config
+	both events are listened by the EventLog. Also you can use WmiWebEventProvider, and SqlWebEventProvider.
+
+	<configuration>
+		<system.web>
+			<healthMonitoring enabled="true" heartbeatInterval="1">
+				<rules>
+			
+				<add name="Heart Beat"
+				eventName="Heartbeats"
+				provider="EventLogProvider"
+				profile="Default"/>
+			
+				<add name="App Lifetime"
+				eventName="Application Lifetime Events"
+				provider="EventLogProvider"
+				profile="Default"
+				minInstances="1" minInterval=""
+				maxLimit="Infinite"/>
+			
+				</rules>
+			</healthMonitoring>
+		<system.web>
+	<configuration>
+
+
+		heartbeatInterval="1" means seconds to wait between raising the WebHeartbeatEvent events
+
+		In a overall stage, before to make rules you should 
+	
+		1) Add events
+		2) Add listeners (or providers)
+		3) create rules
+
+		but there are some events and listeners already registered so all you need is to associate events with listeners.
+
+
+III) Publishing web Application
+
+	1) You can deploying copying and paste the site in the server
+	2) You can deploy by using Web Deployment Projects tool provided by microsoft

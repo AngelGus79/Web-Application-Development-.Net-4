@@ -1,0 +1,33 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Sales.master.cs" Inherits="UsingScriptingClientSideAjaxAndJquery.Sales" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+
+            <div class="col-lg-3">
+           
+                        <asp:LinkButton Text="Sales" PostBackUrl="~/SalesPage.aspx" Width="100%" runat="server" />
+                        <asp:LinkButton Text="Products" Width="100%" PostBackUrl="~/ProductsPage.aspx" runat="server" />
+                        <asp:LinkButton Text="Clients" Width="100%" PostBackUrl="~/ClientsPage.aspx" runat="server" />
+                   
+           </div>
+            <div class="col-lg-9">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+                </div>
+          </div>
+    </form>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
