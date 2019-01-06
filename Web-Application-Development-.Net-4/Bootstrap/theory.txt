@@ -1,0 +1,24 @@
+﻿
+
+
+basic structure
+	<div class="container">
+		<div class="row">
+			<div class="col">
+			</div>
+		</div>
+	</div>
+
+you can add a proportion of widh col (max. 12)
+	<div class="col-2">
+
+you can define a size where the proportion take place
+available size col, sm, md, lg, xl
+       <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4 > </div>
+
+in order the page embrace all the screen
+	<div class="container-fluid ">
+
+to hidde columns use d-none or d-<size>-none. And to show d-<size>-block
+the following example hidde xs and sm sizes and since md column is visible
+	    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-lg-4 d-none d-md-block borde1 ">
