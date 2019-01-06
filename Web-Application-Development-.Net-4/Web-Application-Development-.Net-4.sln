@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsingScriptingClientSideAja
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bootstrap", "Bootstrap\Bootstrap.csproj", "{9657C6A1-EE54-475F-A1EE-C526D81059BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jquery", "Jquery\Jquery.csproj", "{AC0E6279-4904-446C-9C25-284CD5CFDBF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{9657C6A1-EE54-475F-A1EE-C526D81059BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9657C6A1-EE54-475F-A1EE-C526D81059BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9657C6A1-EE54-475F-A1EE-C526D81059BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC0E6279-4904-446C-9C25-284CD5CFDBF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC0E6279-4904-446C-9C25-284CD5CFDBF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC0E6279-4904-446C-9C25-284CD5CFDBF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC0E6279-4904-446C-9C25-284CD5CFDBF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
