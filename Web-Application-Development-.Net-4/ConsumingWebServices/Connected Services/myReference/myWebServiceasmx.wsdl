@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="getEmployeesWithSalaryGreatherThan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="salary" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getEmployeesWithSalaryGreatherThanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getEmployeesWithSalaryGreatherThanResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="getEmployeesWithSalaryGreatherThanSoapIn">
+    <wsdl:part name="parameters" element="tns:getEmployeesWithSalaryGreatherThan" />
+  </wsdl:message>
+  <wsdl:message name="getEmployeesWithSalaryGreatherThanSoapOut">
+    <wsdl:part name="parameters" element="tns:getEmployeesWithSalaryGreatherThanResponse" />
+  </wsdl:message>
+  <wsdl:portType name="myWebServiceasmxSoap">
+    <wsdl:operation name="getEmployeesWithSalaryGreatherThan">
+      <wsdl:input message="tns:getEmployeesWithSalaryGreatherThanSoapIn" />
+      <wsdl:output message="tns:getEmployeesWithSalaryGreatherThanSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="myWebServiceasmxSoap" type="tns:myWebServiceasmxSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getEmployeesWithSalaryGreatherThan">
+      <soap:operation soapAction="http://tempuri.org/getEmployeesWithSalaryGreatherThan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="myWebServiceasmxSoap12" type="tns:myWebServiceasmxSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getEmployeesWithSalaryGreatherThan">
+      <soap12:operation soapAction="http://tempuri.org/getEmployeesWithSalaryGreatherThan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="myWebServiceasmx">
+    <wsdl:port name="myWebServiceasmxSoap" binding="tns:myWebServiceasmxSoap">
+      <soap:address location="http://localhost:50434/myWebServiceasmx.asmx" />
+    </wsdl:port>
+    <wsdl:port name="myWebServiceasmxSoap12" binding="tns:myWebServiceasmxSoap12">
+      <soap12:address location="http://localhost:50434/myWebServiceasmx.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

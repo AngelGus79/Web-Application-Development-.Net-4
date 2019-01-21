@@ -1,0 +1,15 @@
+﻿To use Wcf data service
+
+ You have to install
+
+1.- odata connected service extension
+2.- odata v4 client code generator
+3.- wcf toolkit https://download.microsoft.com/download/1/C/A/1CAA41C7-88B9-42D6-9E11-3C655656DAB1/WcfDataServices.exe
+4.- wcf data service template nugget (in the WFC Data service project)
+
+
+5.- Go to registry:
+[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Microsoft WCF Data Services]
+
+duplicate VS 2010 Tooling key.
+And renamed it to VS 2014 Tooling.

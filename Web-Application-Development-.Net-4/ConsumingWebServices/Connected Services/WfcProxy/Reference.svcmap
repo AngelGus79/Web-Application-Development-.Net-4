@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="11d5fc83-36f9-475d-9f81-5ed2127bc913" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:50434/WFCService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WFCService.xsd" MetadataType="Schema" ID="52175f77-8a28-4d50-a11e-482d499ab068" SourceId="1" SourceUrl="http://localhost:50434/WFCService.svc?xsd=xsd1" />
+    <MetadataFile FileName="WFCService1.xsd" MetadataType="Schema" ID="3adf9cd0-6981-4234-8149-12cd288688ea" SourceId="1" SourceUrl="http://localhost:50434/WFCService.svc?xsd=xsd2" />
+    <MetadataFile FileName="WFCService.disco" MetadataType="Disco" ID="6c6aea4c-c004-406f-b928-7f0387c55f6d" SourceId="1" SourceUrl="http://localhost:50434/WFCService.svc?disco" />
+    <MetadataFile FileName="WFCService.wsdl" MetadataType="Wsdl" ID="00fba53c-a4d3-4d14-ad4e-284c3758d536" SourceId="1" SourceUrl="http://localhost:50434/WFCService.svc?wsdl" />
+    <MetadataFile FileName="WFCService2.xsd" MetadataType="Schema" ID="f8f4085e-5d67-4bd2-9e3a-252774678c43" SourceId="1" SourceUrl="http://localhost:50434/WFCService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

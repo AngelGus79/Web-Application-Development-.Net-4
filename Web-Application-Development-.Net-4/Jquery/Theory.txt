@@ -1,0 +1,2 @@
+﻿Using jQuery with a CDN.
+	you can use the jquery library from servers

@@ -75,7 +75,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="exercise01.aspx" />
+    <Content Include="justifying.aspx" />
     <Content Include="Global.asax" />
     <Content Include="images\img01.jpg" />
     <Content Include="images\img02.jpg" />
@@ -137,12 +137,12 @@
     <Content Include="Scripts\popper-utils.js.map" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="exercise01.aspx.cs">
-      <DependentUpon>exercise01.aspx</DependentUpon>
+    <Compile Include="justifying.aspx.cs">
+      <DependentUpon>justifying.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="exercise01.aspx.designer.cs">
-      <DependentUpon>exercise01.aspx</DependentUpon>
+    <Compile Include="justifying.aspx.designer.cs">
+      <DependentUpon>justifying.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
