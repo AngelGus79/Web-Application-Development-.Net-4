@@ -17,9 +17,9 @@ You can modify the settings by Web Site Administration Tool (WSAT) to access fol
 2.- open a command prompt and browse to C:\Program Files (x86)\IIS Express   (NOT AS ADMINISTRATOR).
 3.- execute iisexpress.exe /path:C:\Windows\Microsoft.NET\Framework\v4.0.30319\ASP.NETWebAdminFiles /vpath:/ASP.NETWebAdminFiles /port:THEPORT /clr:4.0 /ntlm
 4.- finally open a browser with the url http://localhost:PORT/asp.netwebadminfiles/default.aspx?applicationPhysicalPath=PATHTOYOURPROJECT&applicationUrl=/
-5.- to get the path of project just right-click ono the project and <open project folder> option
+5.- to get the path of project just right-click on the project and <open project folder> option
 
-you will fing 3 main tabs
+you will find 3 main tabs
 security .- dedicated to manage users and set permissions to the web site to users
 application .- this settings apply to entire application
 provider .- you can specify data base provider to create memberships and roles.
