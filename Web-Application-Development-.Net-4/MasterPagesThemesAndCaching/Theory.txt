@@ -87,7 +87,7 @@ MasterPageFile = (String)Session["masterpage"];
 
 You can store information in cache to improve performance and scalability in web sites.
 for example if you have a list of articles that you need to show, you can store many of them in cache
-It is good focus to store data in cache which does not chance frecuently.
+It is good focus to store data in cache which does not change frecuently.
 
 In ASP.Net there are 2 types of caching
 	5.1 Application caching
